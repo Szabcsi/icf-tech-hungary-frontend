@@ -1,0 +1,54 @@
+﻿<div class="col-md-8 offset-md-2 mt-5"> 
+    <div class="alert alert-info text-center">
+        <strong>Administrator</strong> - U: admin P: admin<br />
+        <strong>Content Editor & Logged in User</strong> - U: user1 P: user1<br />
+        <strong>Content Editor</strong> - U: user2 P: user2<br />
+        <strong>Logged in User</strong> - U: user3 P: user3
+    </div>
+    <div class="card col-md-12">
+        <h4 class="card-header text-center">Angular 8 Role Based Auth Example</h4>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="card-body col-md-6">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <div *ngIf="f.username.errors.required">Username is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            </div>
+                        </div>
+                        <button [disabled]="loading" class="btn btn-primary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Login
+                        </button>
+                        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                    </div>
+                    <div class="card col-md-6">
+                        <h4 class="card-header">ReCaptcha Service</h4>
+                        <div class="card-body" *ngIf="countOfLogin()">
+                            <!--<div class="row mt-5">
+                                <div class="col-md-9 mx-auto">
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <div #recaptcha ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <re-captcha (resolved)="resolved($event)" 
+                                formControlName="recaptchaReactive" 
+                                siteKey="6LdNUrYZAAAAAFezbnQrgRH0Tw1Mtwp7DtoFQdVs">  
+                            </re-captcha>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>            

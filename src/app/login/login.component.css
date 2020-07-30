@@ -1,0 +1,12 @@
+/*.card > .div {
+    float:left;
+}*/
+.decorator {
+    /*display:inline;*/
+    float:left;
+    top:10px;
+    left:120px ;
+    padding:2px;
+    /*height:250px;
+    width:350px;*/
+}
