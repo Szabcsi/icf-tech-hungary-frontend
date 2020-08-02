@@ -72,28 +72,7 @@ export class LoginComponent implements OnInit {
                 this.loading = false;
             });
 
-        this.clientService.updateClient(1,
-            {
-                id: 1,
-                name: 'admin',
-                password: 'admin',
-                lastlogin: this.currentDate.toISOString(),
-                roles: Role.Admin
-            }
-        );
-
     }
-
-    /*get isLastLoginAvailable() {
-        let dummyClient = this.clientService.getClient(this.currentUser.id);
-        let result = false;
-        if (this.dummyClient) {
-            this.lastLoginDate = this.dummyClient.lastlogin;
-            result = true;
-        }
-        return result;
-    }*/
-
 
     countOfLogin() {
         let result = false;

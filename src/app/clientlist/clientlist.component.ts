@@ -15,7 +15,7 @@ export class ClientListComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private clientService: ClientService) { }
 
   ngOnInit() {
-    this.clientService.getClients().subscribe(data => {
+    this.clientService.getAllClients().subscribe(data => {
       this.clients = data;
     });
   }

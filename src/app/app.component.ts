@@ -19,8 +19,10 @@ export class AppComponent implements OnInit, OnDestroy {
     menu: MultilevelNodes[] = CONSTANT.sidebarDemoLinks;
     config = CONSTANT.sidebarConfigurations;
     displayList = false;
-    dummyClient: any;
-    lastLoginDate = '1970-01-01 01:01:00';
+    dummyClient: IClient[] = [];
+    previousLoginDate = '';
+    errorMessage = '';
+    callOnlyOnce = false;
 
     constructor(
         private router: Router,
@@ -40,14 +42,28 @@ export class AppComponent implements OnInit, OnDestroy {
         let result = false;
         if (this.currentUser) {
             result = true;
+            if (!this.callOnlyOnce) {
+                this.callOnlyOnce = true;
+                this.setPreviousLoginDate();
+                console.log(JSON.stringify(this.currentUser));
+            }
         } else {
             result = false;
         }
         return result;
     }
 
-    get isAdmin() {
-        return this.currentUser && this.currentUser.roles.includes(Role.Admin);
+    setPreviousLoginDate() {
+        if ( this.currentUser ) {
+                this.clientService.getClientByNameAndPassword(
+                    this.currentUser.username, this.currentUser.password).subscribe(data => {
+                    this.previousLoginDate = data.lastLogin;
+                }
+                , error => {
+                    this.errorMessage = error;
+                    console.log(this.errorMessage);
+                });
+        }
     }
 
     logout() {

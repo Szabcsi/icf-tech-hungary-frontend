@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// import 'rxjs/add/operator/map';
+import { Client } from '@app/client';
 
 
 @Injectable({
@@ -13,16 +13,20 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
 
-  getClients(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
-  }
-
   getClient(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  updateClient(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`, value);
+  getClientByNameAndPassword(name: string, password: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/name/${name}/password/${password}`);
+  }
+
+  getAllClients(): Observable<any> {
+    return this.http.get(`${this.baseUrl}`);
+  }
+
+  insertClient(value: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}`, value);
   }
 
 }

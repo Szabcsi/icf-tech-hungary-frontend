@@ -103,8 +103,6 @@ export class DashboardAppComponent implements OnInit {
     if (results3.length === 0) {
       outerArr[2].items = [];
     }
-    console.log(outerArr);
-    console.log(this.result);
     this.result = outerArr;
     return this.result;
   }

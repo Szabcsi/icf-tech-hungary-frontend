@@ -4,9 +4,7 @@
         <a class="nav-item nav-link" *ngIf="isUserLoggedIn"(click)="logout()">Logout</a>
         <a class="nav-item nav-link" *ngIf="isUserLoggedIn">Name: {{ currentUser.firstName }}</a>
         <a class="nav-item nav-link" *ngIf="isUserLoggedIn">Role(s): {{ currentUser.roles }}</a>
-        <a class="nav-item nav-link" *ngIf="isUserLoggedIn">Last Login: {{ lastLoginDate | date:"MM-dd-yyyy hh:mm:ss"}}</a>
-        <!--<a class="nav-item nav-link" routerLink="/">Home</a>-->
-        <!--<a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>-->
+        <a class="nav-item nav-link" *ngIf="isUserLoggedIn">Previous Login: {{ previousLoginDate | date:"MM-dd-yyyy hh:mm:ss"}}</a>
     </div>
 </nav>
 <div class="container">
