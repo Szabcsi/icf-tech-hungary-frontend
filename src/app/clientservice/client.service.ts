@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '@app/client';
+import { LoginResponse } from '../login/login.response.model';
+import { LoginRequest } from '../login/login.request.model';
 
 
 @Injectable({
@@ -29,4 +31,7 @@ export class ClientService {
     return this.http.post(`${this.baseUrl}`, value);
   }
 
+  login(loginRequest: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<any>(this.baseUrl + '/login', loginRequest);
+  }
 }
